@@ -1,35 +1,77 @@
-# Express API with MySQL
+# Student API Deployment - CS 421 Assignment 1
 
-This project provides a simple API built using Express.js and MySQL for managing student and subject data. It includes basic CRUD operations for students, with endpoints to fetch all students and subjects, as well as add new students.
+## Project Description
+A RESTful API built with Node.js, Express, and MySQL that provides student and curriculum information for the University of Dodoma. The API is deployed on AWS EC2 with Nginx as a reverse proxy.
 
-## Table of Contents
+## API Endpoints
 
-1. [Project Overview](#project-overview)
-2. [Prerequisites](#prerequisites)
-3. [Installation](#installation)
-4. [API Endpoints](#api-endpoints)
-5. [Environment Variables](#environment-variables)
-6. [Starting the Application](#starting-the-application)
-7. [Contributing](#contributing)
-8. [License](#license)
+### Student Information
+- `GET /students`
+  - Returns: List of all students with their programs
+  - Example response:
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "Neema Suleman",
+        "program": "Software Engineering"
+      },
+      {
+        "id": 2,
+        "name": "Merry Jane",
+        "program": "Computer Science"
+      }
+    ]
+    ```
 
-## Project Overview
+### Curriculum Information
+- `GET /subjects`
+  - Returns: Subjects grouped by academic year
+  - Example response:
+    ```json
+    {
+      "Year 1": [
+        "Introduction to Programming",
+        "Discrete Mathematics"
+      ],
+      "Year 2": [
+        "Data Structures and Algorithms",
+        "Database Systems"
+      ]
+    }
+    ```
 
-This project is a simple backend API for managing student and subject records. It is built using Express.js and connects to a MySQL database for storing the data.
+## Deployment Details
 
-## Prerequisites
+**Public URLs:**
+- API Base URL: `http://54.152.132.206`
+- Students Endpoint: `http://54.152.132.206/students`
+- Subjects Endpoint: `http://54.152.132.206/subjects`
 
-Before running the project, ensure you have:
-
-- Node.js (v14 or higher)
-- MySQL Server installed
-- MySQL client (for managing the database)
-- Git (for version control)
-
-## Installation
-
-### 1. Clone the repository
-
-```bash
+**GitHub Repository:**  
 https://github.com/NeemaSule/student-api.git
-cd student-api
+
+## Installation & Setup
+
+### Prerequisites
+- Node.js (v14+)
+- MySQL (v8.0+)
+- Nginx
+- PM2 (for process management)
+
+### 1. Database Setup
+```sql
+CREATE DATABASE student_db;
+USE student_db;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    program VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE subjects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    year INT NOT NULL
+);
