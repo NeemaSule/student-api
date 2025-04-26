@@ -62,7 +62,3 @@ app.post("/students", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
-// CREATE USER 'student'@'localhost' IDENTIFIED BY 'Neema@@24';
-// GRANT ALL PRIVILEGES ON student_db.* TO 'student'@'localhost';
