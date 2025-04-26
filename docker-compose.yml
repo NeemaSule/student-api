@@ -4,27 +4,28 @@ services:
   api:
     build: .
     ports:
-      - "3000:3000"
-    environment:
-      - DB_HOST=db
-      - DB_USER=student
-      - DB_PASSWORD=Neema@@24
-      - DB_NAME=student_db
+      - "3000:3000"  # Keeps your original port mapping
+    env_file:
+      - .env         # Uses your local .env file
     depends_on:
-      - db
-    restart: unless-stopped
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: Neema@@24
       MYSQL_DATABASE: student_db
+      MYSQL_USER: student
+      MYSQL_PASSWORD: Neema@@24
     volumes:
       - mysql_data:/var/lib/mysql
       - ./db-scripts:/docker-entrypoint-initdb.d
-    ports:
-      - "3306:3306"
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 volumes:
   mysql_data:
