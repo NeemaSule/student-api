@@ -76,7 +76,8 @@ CREATE TABLE subjects (
     year INT NOT NULL
 );
 
-
+```
+---
 
 ### Docker and Docker Compose
 
