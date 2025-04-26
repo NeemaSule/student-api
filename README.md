@@ -160,12 +160,15 @@ CREATE TABLE IF NOT EXISTS subjects (
 ---
 
 -- Sample data
+```bash
 INSERT INTO students (name, program) VALUES 
 ('John Doe', 'Computer Science'),
 
 
 INSERT INTO subjects (name, code) VALUES
 ('Mathematics', 'MATH101'),
+
+```
 
 ## 2.3 Full Stack Deployment
 ```bash
