@@ -75,3 +75,8 @@ CREATE TABLE subjects (
     name VARCHAR(100) NOT NULL,
     year INT NOT NULL
 );
+
+
+
+### Docker and Docker Compose
+
